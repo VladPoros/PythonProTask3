@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask with SQL</title>
+</head>
+<body>
+
+<h1>List of sections:</h1>
+<ul>
+    {% for section in sections %}
+    <li>Title: {{ section[1] }} || Description: {{ section[2] }} || Date: {{ section[3] }}</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
