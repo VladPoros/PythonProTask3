@@ -1,0 +1,7 @@
+version: "3.9"
+
+servisec:
+  task6:
+    build: Dockerfile
+    ports:
+      - "127.0.0.1:8000:80"
