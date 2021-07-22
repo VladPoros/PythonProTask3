@@ -56,3 +56,4 @@ run-command: ## Run command in shell
 
 lint: ## Show images
 	docker-compose -f $(or $(DOCKER_COMPOSE_FILE), docker-compose.yml) exec app sh -c "flake8 $(key) api"
+
