@@ -1,0 +1,18 @@
+version: "3.3"
+
+services:
+  task6:
+    build: .
+#    ports:
+#      - "127.0.0.1:8000:80"
+    volumes:
+      - ./:/task5
+
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    ports:
+      - "127.0.0.1:80:80"
+    depends_on:
+      - task6
