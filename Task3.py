@@ -5,7 +5,7 @@ import sqlite3
 app = Flask(__name__)
 
 
-def BD(execute):
+def filled_db(execute):
     connection = sqlite3.connect('blog.sqlite')
     cursor = connection.cursor()
     cursor.execute(execute)
@@ -13,7 +13,7 @@ def BD(execute):
     connection.close()
     return render_template('index.html', sections=sections)
 
-def BD_amend (execute, values):
+def execute_db_query(execute, values):
     connection = sqlite3.connect('blog.sqlite')
     cursor = connection.cursor()
     cursor.execute(execute, values)
@@ -33,7 +33,7 @@ def info_page():
     Use this page after redirect each action
     Also use index html for templates
     '''
-    return BD("SELECT * FROM sections")
+    return filled_db("SELECT * FROM sections")
 
 
 @app.route('/add/', methods=('GET', 'POST'))
@@ -55,7 +55,7 @@ def add_page():
             return 'You don`t enter the title or description'
         else:
             values = (added_title, added_description)
-            return BD_amend("""INSERT INTO sections (title, description, date) 
+            return execute_db_query("""INSERT INTO sections (title, description, date) 
             VALUES(?, ?, '15/07')""", values)
 
 
@@ -86,7 +86,7 @@ def edit_page():
                             WHERE id = ?""", values)
             else:
                 values = (updated_title, updated_description, id)
-                return BD_amend("""UPDATE sections SET title = ?, description = ?
+                return execute_db_query("""UPDATE sections SET title = ?, description = ?
                 WHERE id = ?""", values)
 
 
@@ -105,7 +105,7 @@ def delete_page():
             return 'You don`t enter the id'
         else:
             values = (id)
-            return BD_amend("DELETE FROM sections WHERE id = ?", values)
+            return execute_db_query("DELETE FROM sections WHERE id = ?", values)
 
 
 if __name__ == '__main__':
