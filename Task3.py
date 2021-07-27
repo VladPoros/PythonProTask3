@@ -78,11 +78,11 @@ def edit_page():
         else:
             if not updated_title:
                 values = (updated_description, id)
-                return BD_amend("""UPDATE sections SET description = ?
+                return execute_db_query("""UPDATE sections SET description = ?
                             WHERE id = ?""", values)
             if not updated_description:
                 values = (updated_title, id)
-                return BD_amend("""UPDATE sections SET title = ?
+                return execute_db_query("""UPDATE sections SET title = ?
                             WHERE id = ?""", values)
             else:
                 values = (updated_title, updated_description, id)
