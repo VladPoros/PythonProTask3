@@ -27,7 +27,7 @@ def start_page():
 
 
 @app.route('/info/')
-def info_page():
+def info_page()
     '''
     Main page with all data in SQLite
     Use this page after redirect each action
